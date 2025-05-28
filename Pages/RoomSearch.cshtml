@@ -1,0 +1,35 @@
+﻿@page
+@model MyApp.Namespace.RoomSearchModel
+@{
+}
+<h2>查詢空房</h2>
+
+<form method="post">
+    <label>開始日期：</label>
+    <input type="date" asp-for="StartDate" />
+
+    <label>結束日期：</label>
+    <input type="date" asp-for="EndDate" />
+
+    <button type="submit">查詢</button>
+</form>
+
+@if (!ModelState.IsValid)
+{
+    <p style="color:red;">請輸入正確的查詢條件。</p>
+}
+
+@if (Model.AvailableRooms.Count > 0)
+{
+    <h3>可預訂房間：</h3>
+    <ul>
+        @foreach (var room in Model.AvailableRooms)
+        {
+            <li>房號：@room</li>
+        }
+    </ul>
+}
+else if (Model.StartDate != default && Model.EndDate != default)
+{
+    <p>查無可預訂房間。</p>
+}

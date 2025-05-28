@@ -1,0 +1,16 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<form method="post">
+    <button type="submit" asp-page-handler="ShowMessage">點我顯示歡迎訊息</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <p style="color: green; font-weight: bold;">
+        @Model.Message
+    </p>
+}
